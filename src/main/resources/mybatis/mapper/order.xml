@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.OrderDao">
+
+	<select id="selectOrderList" parameterType="string"
+		resultType="orderlist">
+		SELECT oid, mid, ozipcode, oaddress1, oaddress2, odate,
+		oreceiver, otel, ousedmileage, ousedcoupon, opayment, ostatus,
+		oaccountdeadline, odiscounted
+		FROM ORDERLIST
+		WHERE mid = #{mid}
+	</select>
+
+	<select id="getOrderListByOid" parameterType="string"
+		resultType="orderlist">
+		SELECT oid, mid, ozipcode, oaddress1, oaddress2, odate,
+		oreceiver, otel, ousedmileage, ousedcoupon, opayment, ostatus,
+		oaccountdeadline, odiscounted
+		FROM ORDERLIST
+		WHERE OID=#{oid}
+	</select>
+
+	<select id="getOrderItemsByOid" parameterType="string"
+		resultType="orderitem">
+		SELECT oid, pid, ccolorcode, psize, oamount
+		FROM ORDERITEM
+		WHERE OID=#{oid}
+	</select>
+
+	<select id="getOrderListByMid" parameterType="string"
+		resultType="orderlist">
+		SELECT oid, mid, ozipcode, oaddress1, oaddress2, odate,
+		oreceiver, otel, ousedmileage, ousedcoupon, opayment, ostatus,
+		oaccountdeadline, odiscounted
+		FROM ORDERLIST
+		WHERE mid=#{mid}
+	</select>
+
+	<!-- <select id="getOrderItemsByMid" parameterType="string"
+		resultMap="orderMap">
+		SELECT oid, pid, ccolorcode, psize, oamount
+		FROM ORDERITEM
+		WHERE oid=#{oid}
+	</select>   -->
+	
+	<select id="getOidsByMid" parameterType="string" resultType="string">
+		SELECT oid
+		FROM ORDERLIST
+		WHERE mid=#{mid}
+	</select>
+</mapper>
