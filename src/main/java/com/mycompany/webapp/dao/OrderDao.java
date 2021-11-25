@@ -13,6 +13,5 @@ public interface OrderDao {
 	public OrderList getOrderListByOid(String oid);
 	public List<OrderItem> getOrderItemsByOid(String oid);
 	public OrderList getOrderListByMid(String mid);
-	//public List<OrderItem> getOrderItemsByMid(String mid);
 	public List<String> getOidsByMid(String mid);
 }

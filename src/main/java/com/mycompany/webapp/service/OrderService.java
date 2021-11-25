@@ -40,8 +40,4 @@ public class OrderService {
 		return orderDao.getOidsByMid(mid);
 	}
 	
-	/*public List<OrderItem> getOrderItemsByMid(String mid) {
-		return orderDao.getOrderItemsByMid(mid);
-	}*/
-
 }

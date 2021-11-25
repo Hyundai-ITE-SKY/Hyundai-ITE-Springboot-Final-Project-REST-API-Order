@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Order;
-import com.mycompany.webapp.dto.OrderItem;
 import com.mycompany.webapp.dto.OrderList;
 import com.mycompany.webapp.service.OrderService;
 
