@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Order;
 import com.mycompany.webapp.dto.OrderList;
+import com.mycompany.webapp.dto.OrderState;
 import com.mycompany.webapp.service.OrderService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -58,6 +59,17 @@ public class OrderController {
 		order.setOrderitem(orderService.getOrderItemsByOid(oid));
 
 		return order;
+	}
+	
+	/* mid로 ostatus와 개수 가져오기 */
+	@GetMapping("/orderstate")
+	public List<OrderState> ostatusByMid(String mid) {
+		List<OrderState> orderStatus = new LinkedList<OrderState>();
+		
+		orderStatus = (orderService.getOstatusByMid(mid));
+		orderStatus.add(orderService.getTotalOstatusByMid(mid));
+		
+		return orderStatus;
 	}
 	
 }

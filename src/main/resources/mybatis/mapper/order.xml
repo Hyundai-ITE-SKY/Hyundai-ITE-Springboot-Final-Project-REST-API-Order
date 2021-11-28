@@ -49,4 +49,17 @@
 		FROM ORDERLIST
 		WHERE mid=#{mid}
 	</select>
+	
+	<select id="getOstatusByMid" parameterType="string" resultType="orderstate">
+		SELECT OSTATUS, COUNT(*) as count
+		FROM ORDERLIST
+		WHERE mid=#{mid}
+		GROUP BY OSTATUS
+	</select>
+	
+	<select id="getTotalOstatusByMid" parameterType="string" resultType="orderstate">
+		SELECT 0 as OSTATUS, COUNT(*) as count
+		FROM ORDERLIST
+		WHERE mid=#{mid}
+	</select>
 </mapper>

@@ -8,6 +8,7 @@
 		<typeAlias type="com.mycompany.webapp.dto.OrderList" alias="orderlist"/>
 		<typeAlias type="com.mycompany.webapp.dto.OrderItem" alias="orderitem"/>
 		<typeAlias type="com.mycompany.webapp.dto.Order" alias="order"/>
+		<typeAlias type="com.mycompany.webapp.dto.OrderState" alias="orderstate"/>
 	</typeAliases>	
 </configuration>
 

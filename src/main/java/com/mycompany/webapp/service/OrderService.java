@@ -10,6 +10,7 @@ import com.mycompany.webapp.dao.OrderDao;
 import com.mycompany.webapp.dto.Order;
 import com.mycompany.webapp.dto.OrderItem;
 import com.mycompany.webapp.dto.OrderList;
+import com.mycompany.webapp.dto.OrderState;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,4 +41,11 @@ public class OrderService {
 		return orderDao.getOidsByMid(mid);
 	}
 	
+	public List<OrderState> getOstatusByMid(String mid){
+		return orderDao.getOstatusByMid(mid);
+	}
+	
+	public OrderState getTotalOstatusByMid(String mid){
+		return orderDao.getTotalOstatusByMid(mid);
+	}
 }
