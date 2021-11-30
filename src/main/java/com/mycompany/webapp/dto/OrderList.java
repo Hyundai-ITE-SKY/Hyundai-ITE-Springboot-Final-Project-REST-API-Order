@@ -20,4 +20,5 @@ public class OrderList {
 	private int ostatus;
 	private Date oaccountdeadline;
 	private int odiscounted;
+	private int ototal;
 }

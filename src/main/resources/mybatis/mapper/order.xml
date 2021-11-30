@@ -16,7 +16,7 @@
 		resultType="orderlist">
 		SELECT oid, mid, ozipcode, oaddress1, oaddress2, odate,
 		oreceiver, otel, ousedmileage, ousedcoupon, opayment, ostatus,
-		oaccountdeadline, odiscounted
+		oaccountdeadline, odiscounted, ototal
 		FROM ORDERLIST
 		WHERE OID=#{oid}
 	</select>
