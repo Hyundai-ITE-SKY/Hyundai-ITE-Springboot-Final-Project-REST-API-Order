@@ -19,6 +19,7 @@
 		oaccountdeadline, odiscounted, ototal
 		FROM ORDERLIST
 		WHERE OID=#{oid}
+		ORDER BY oid desc
 	</select>
 
 	<select id="getOrderItemsByOid" parameterType="string"
