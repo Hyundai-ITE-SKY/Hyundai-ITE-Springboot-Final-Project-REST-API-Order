@@ -9,7 +9,7 @@ import lombok.Data;
 public class OrderList {
 	private String oid;
 	private String mid;
-	private int ozipcode;
+	private String ozipcode;
 	private String oaddress1;
 	private String oaddress2;
 	private Date odate;
