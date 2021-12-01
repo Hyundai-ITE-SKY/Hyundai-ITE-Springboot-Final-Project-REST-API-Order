@@ -102,7 +102,7 @@ public class OrderController {
 	
 	/*orderList Create*/
 	@PostMapping("/createorderlist")
-	public int createOrderList(OrderList orderList) {
+	public OrderList createOrderList(OrderList orderList) {
 		return orderService.createOrderList(orderList);
 	}
 	

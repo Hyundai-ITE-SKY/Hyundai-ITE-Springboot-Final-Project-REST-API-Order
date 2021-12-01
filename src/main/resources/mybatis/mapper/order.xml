@@ -37,44 +37,60 @@
 		WHERE mid=#{mid}
 	</select>
 
-	<!-- <select id="getOrderItemsByMid" parameterType="string"
-		resultMap="orderMap">
-		SELECT oid, pid, ccolorcode, psize, oamount
-		FROM ORDERITEM
-		WHERE oid=#{oid}
-	</select>   -->
-	
-	<select id="getOidsByMid" parameterType="string" resultType="string">
+	<!-- <select id="getOrderItemsByMid" parameterType="string" resultMap="orderMap"> 
+		SELECT oid, pid, ccolorcode, psize, oamount FROM ORDERITEM WHERE oid=#{oid} 
+		</select> -->
+
+	<select id="getOidsByMid" parameterType="string"
+		resultType="string">
 		SELECT oid
 		FROM ORDERLIST
 		WHERE mid=#{mid}
 	</select>
-	
-	<select id="getOstatusByMid" parameterType="string" resultType="orderstate">
+
+	<select id="getOstatusByMid" parameterType="string"
+		resultType="orderstate">
 		SELECT OSTATUS, COUNT(*) as count
 		FROM ORDERLIST
-		WHERE mid=#{mid}
+		WHERE
+		mid=#{mid}
 		GROUP BY OSTATUS
 	</select>
-	
-	<select id="getTotalOstatusByMid" parameterType="string" resultType="orderstate">
+
+	<select id="getTotalOstatusByMid" parameterType="string"
+		resultType="orderstate">
 		SELECT 0 as OSTATUS, COUNT(*) as count
 		FROM ORDERLIST
-		WHERE mid=#{mid}
+		WHERE
+		mid=#{mid}
 	</select>
-		
+
 	<insert id="createOrderItem" parameterType="orderitem">
-			INSERT INTO orderitem 
-			(oid, pid, ccolorcode, psize, oamount)
-			VALUES 
-			(#{oid}, #{pid}, #{ccolorcode}, #{psize}, #{oamount})
+		INSERT INTO orderitem
+		(oid, pid, ccolorcode, psize, oamount)
+		VALUES
+		(#{oid}, #{pid}, #{ccolorcode}, #{psize}, #{oamount})
 	</insert>
-	
+
 	<insert id="createOrderList" parameterType="orderlist">
-			INSERT INTO orderlist 
-			(oid, mid, ozipcode, oaddress1, oaddress2, odate, oreceiver, otel, ousedmileage, ousedcoupon, opayment, ostatus, oaccountdeadline, odiscounted, ototal)
-			VALUES 
-			(oid_seq.NEXTVAL, #{mid}, #{ozipcode}, #{oaddress1}, #{oaddress2}, SYSDATE, #{oreceiver}, #{otel}, #{ousedmileage}, #{ousedcoupon}, #{opayment}, #{ostatus}, SYSDATE+2, #{odiscounted}, #{ototal})
+		INSERT INTO orderlist
+		(oid, mid, ozipcode, oaddress1, oaddress2, odate, oreceiver, otel,
+		ousedmileage, ousedcoupon, opayment, ostatus, oaccountdeadline,
+		odiscounted, ototal)
+		VALUES
+		(oid_seq.NEXTVAL, #{mid}, #{ozipcode}, #{oaddress1}, #{oaddress2}, SYSDATE,
+		#{oreceiver}, #{otel}, #{ousedmileage}, #{ousedcoupon}, #{opayment},
+		#{ostatus}, SYSDATE+2, #{odiscounted}, #{ototal})
 	</insert>
-	
+	<select id="getCurrentOid" resultType="int">
+		SELECT oid_seq.CURRVAL
+		FROM dual
+	</select>
+	<select id="getCurrentOrderList" parameterType="string" resultType="orderlist">
+		SELECT oid, mid,
+		ozipcode, oaddress1, oaddress2, odate, oreceiver, otel, ousedmileage,
+		ousedcoupon, opayment, ostatus, oaccountdeadline, odiscounted, ototal
+		FROM ORDERLIST
+		WHERE oid=#{oid}
+	</select>
 </mapper>

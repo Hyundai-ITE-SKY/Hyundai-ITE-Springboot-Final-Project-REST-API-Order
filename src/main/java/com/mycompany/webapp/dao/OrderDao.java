@@ -19,4 +19,6 @@ public interface OrderDao {
 	public OrderState getTotalOstatusByMid(String mid);
 	public int createOrderItem(OrderItem orderItem);
 	public int createOrderList(OrderList orderList);
+	public OrderList getCurrentOrderList(String oid);
+	public int getCurrentOid();
 }

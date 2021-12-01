@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.webapp.dao.OrderDao;
 import com.mycompany.webapp.dto.Order;
@@ -53,8 +54,19 @@ public class OrderService {
 		return orderDao.createOrderItem(orderItem);
 	}
 	
-	public int createOrderList(OrderList orderList){
-		return orderDao.createOrderList(orderList);
+	@Transactional
+	public OrderList createOrderList(OrderList orderList){
+		OrderList result = new OrderList();
+		
+		try {
+			orderDao.createOrderList(orderList);
+			String oid = String.valueOf(orderDao.getCurrentOid());
+			result = orderDao.getCurrentOrderList(oid);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 }
