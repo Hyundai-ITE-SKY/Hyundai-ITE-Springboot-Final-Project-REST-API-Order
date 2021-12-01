@@ -1,9 +1,11 @@
 package com.mycompany.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,20 +35,37 @@ public class OrderController {
 	}
 
 	/* mid로 주문 목록 가져오기 */
+//	@GetMapping("/orderlist")
+//	public List<Order> orderListByMid(@RequestBody OrderList orderList) {
+//		List<Order> orders = new LinkedList<>();
+//		
+//		List<String> oids = orderService.getOidsByMid(orderList.getMid());
+//		log.info(oids+"");
+//		for(String oid : oids) {
+//			Order order = new Order();
+//
+//			order.setOrderlist(orderService.getOrderListByOid(oid));
+//			order.setOrderitem(orderService.getOrderItemsByOid(oid));
+//			orders.add(order);
+//		}
+//		
+//		return orders;
+//	}
+	
+	/* mid로 주문 목록 가져오기 */
 	@GetMapping("/orderlist")
-	public List<Order> orderListByMid(@RequestBody OrderList orderList) {
-		List<Order> orders = new LinkedList<>();
+	public List<OrderList> orderListByMid(HttpServletRequest request) {
+//		System.out.println("#####"+ mid);
+		String mid = request.getAttribute("mid").toString();
+		List<String> oids  = orderService.getOidsByMid(mid);
+		List<OrderList> orders = new ArrayList<>();
 		
-		List<String> oids = orderService.getOidsByMid(orderList.getMid());
-		log.info(oids+"");
 		for(String oid : oids) {
-			Order order = new Order();
-
-			order.setOrderlist(orderService.getOrderListByOid(oid));
+			OrderList order = new OrderList();
+			order = orderService.getOrderListByOid(oid);
 			order.setOrderitem(orderService.getOrderItemsByOid(oid));
 			orders.add(order);
 		}
-		
 		return orders;
 	}
 
