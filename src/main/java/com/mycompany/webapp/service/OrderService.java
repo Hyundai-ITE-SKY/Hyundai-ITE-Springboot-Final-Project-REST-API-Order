@@ -48,4 +48,13 @@ public class OrderService {
 	public OrderState getTotalOstatusByMid(String mid){
 		return orderDao.getTotalOstatusByMid(mid);
 	}
+		
+	public int createOrderItem(OrderItem orderItem){
+		return orderDao.createOrderItem(orderItem);
+	}
+	
+	public int createOrderList(OrderList orderList){
+		return orderDao.createOrderList(orderList);
+	}
+	
 }

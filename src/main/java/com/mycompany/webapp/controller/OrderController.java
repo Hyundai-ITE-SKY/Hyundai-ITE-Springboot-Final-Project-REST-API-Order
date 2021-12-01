@@ -7,11 +7,14 @@ import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Order;
+import com.mycompany.webapp.dto.OrderItem;
 import com.mycompany.webapp.dto.OrderList;
 import com.mycompany.webapp.dto.OrderState;
 import com.mycompany.webapp.service.OrderService;
@@ -60,7 +63,7 @@ public class OrderController {
 
 		return order;
 	}
-	
+		
 	/* mid로 ostatus와 개수 가져오기 */
 	@GetMapping("/orderstate")
 	public List<OrderState> ostatusByMid(String mid) {
@@ -70,6 +73,18 @@ public class OrderController {
 		orderStatus.add(orderService.getTotalOstatusByMid(mid));
 		
 		return orderStatus;
+	}
+	
+	/*orderItem Create*/
+	@PostMapping("/createorderitem")
+	public int createOrderItem(OrderItem orderItem) {
+		return orderService.createOrderItem(orderItem);
+	}
+	
+	/*orderList Create*/
+	@PostMapping("/createorderlist")
+	public int createOrderList(OrderList orderList) {
+		return orderService.createOrderList(orderList);
 	}
 	
 }
