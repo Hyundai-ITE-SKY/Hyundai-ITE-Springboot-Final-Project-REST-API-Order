@@ -1,6 +1,7 @@
 package com.mycompany.webapp.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -21,4 +22,5 @@ public class OrderList {
 	private Date oaccountdeadline;
 	private int odiscounted;
 	private int ototal;
+	private List<OrderItem> orderitem;
 }
