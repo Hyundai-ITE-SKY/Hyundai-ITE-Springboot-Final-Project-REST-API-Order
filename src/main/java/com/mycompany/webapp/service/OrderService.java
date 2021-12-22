@@ -68,5 +68,9 @@ public class OrderService {
 		
 		return result;
 	}
+
+	public List<String> getOrderListByMidOdate(String mid, String startdate, String enddate) {
+		return orderDao.selectOrderListByMidOdate(mid,startdate,enddate);
+	}
 	
 }
