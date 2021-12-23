@@ -6,7 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import com.mycompany.webapp.controller.OrderController;
 import com.mycompany.webapp.dao.OrderDao;
 import com.mycompany.webapp.dto.Order;
 import com.mycompany.webapp.dto.OrderItem;
@@ -67,6 +69,10 @@ public class OrderService {
 		}
 		
 		return result;
+	}
+	
+	public int cancelOrder(String oid) {
+		return orderDao.cancelOrder(oid);
 	}
 	
 }

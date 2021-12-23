@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.mycompany.webapp.controller.OrderController;
 import com.mycompany.webapp.dto.OrderItem;
 import com.mycompany.webapp.dto.OrderList;
 import com.mycompany.webapp.dto.OrderState;
@@ -21,4 +22,5 @@ public interface OrderDao {
 	public int createOrderList(OrderList orderList);
 	public OrderList getCurrentOrderList(String oid);
 	public int getCurrentOid();
+	public int cancelOrder(String oid);
 }

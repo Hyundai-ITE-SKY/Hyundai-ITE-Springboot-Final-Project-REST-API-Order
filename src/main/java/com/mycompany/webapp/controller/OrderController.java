@@ -90,7 +90,7 @@ public class OrderController {
 		
 		orderStatus = (orderService.getOstatusByMid(mid));
 		orderStatus.add(orderService.getTotalOstatusByMid(mid));
-		
+		log.info(orderStatus+"");
 		return orderStatus;
 	}
 	
@@ -106,4 +106,8 @@ public class OrderController {
 		return orderService.createOrderList(orderList);
 	}
 	
+	@PostMapping("/cancelorder/{oid}")
+	public int cancelOrder(@PathVariable String oid) {
+		return orderService.cancelOrder(oid);
+	}
 }

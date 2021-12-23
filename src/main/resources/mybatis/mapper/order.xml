@@ -65,7 +65,7 @@
 		WHERE
 		mid=#{mid}
 	</select>
-
+	
 	<insert id="createOrderItem" parameterType="orderitem">
 		INSERT INTO orderitem
 		(oid, pid, ccolorcode, psize, oamount)
@@ -94,4 +94,10 @@
 		FROM ORDERLIST
 		WHERE oid=#{oid}
 	</select>
+	
+	<update id="cancelOrder" parameterType="string">
+		update orderlist
+		set ostatus=5
+		where oid=#{oid}
+	</update>
 </mapper>
