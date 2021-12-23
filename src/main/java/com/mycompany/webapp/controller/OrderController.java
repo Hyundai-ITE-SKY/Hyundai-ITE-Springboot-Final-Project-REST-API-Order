@@ -90,11 +90,8 @@ public class OrderController {
 
 		orderStatus = (orderService.getOstatusByMid(mid));
 		orderStatus.add(orderService.getTotalOstatusByMid(mid));
-<<<<<<< HEAD
 		log.info(orderStatus+"");
-=======
 
->>>>>>> branch 'main' of https://github.com/Hyundai-ITE-SKY/Hyundai-ITE-Springboot-Final-Project-REST-API-Order.git
 		return orderStatus;
 	}
 
@@ -116,6 +113,8 @@ public class OrderController {
 	@PostMapping("/cancelorder/{oid}")
 	public int cancelOrder(@PathVariable String oid) {
 		return orderService.cancelOrder(oid);
+	}
+	
 	/*odate기간 검색했을 때 주문목록 받아오기*/
 	@GetMapping("/search/{startdate}/{enddate}")
 	public List<OrderList> getOrderListByOdate(HttpServletRequest request, @PathVariable String startdate, @PathVariable String enddate) {
