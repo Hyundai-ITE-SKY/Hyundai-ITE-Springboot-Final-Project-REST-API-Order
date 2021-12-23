@@ -23,4 +23,5 @@ public class OrderList {
 	private int odiscounted;
 	private int ototal;
 	private List<OrderItem> orderitem;
+	private String orderItemList;
 }

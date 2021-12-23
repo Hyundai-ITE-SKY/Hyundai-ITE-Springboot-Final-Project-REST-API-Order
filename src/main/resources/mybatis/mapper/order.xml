@@ -100,4 +100,9 @@
 		set ostatus=5
 		where oid=#{oid}
 	</update>
+	<select id="selectOrderListByMidOdate" resultType="string">
+		select oid
+		from orderlist
+		where mid=#{mid} and to_char(odate, 'yyyy-mm-dd') between #{startdate} and #{enddate}
+	</select>
 </mapper>
