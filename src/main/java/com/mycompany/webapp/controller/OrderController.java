@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.dto.Order;
@@ -54,16 +55,16 @@ public class OrderController {
 //		
 //		return orders;
 //	}
-	
+
 	/* mid로 주문 목록 가져오기 */
 	@GetMapping("/orderlist")
 	public List<OrderList> orderListByMid(HttpServletRequest request) {
 //		System.out.println("#####"+ mid);
 		String mid = request.getAttribute("mid").toString();
-		List<String> oids  = orderService.getOidsByMid(mid);
+		List<String> oids = orderService.getOidsByMid(mid);
 		List<OrderList> orders = new ArrayList<>();
-		
-		for(String oid : oids) {
+
+		for (String oid : oids) {
 			OrderList order = new OrderList();
 			order = orderService.getOrderListByOid(oid);
 			order.setOrderitem(orderService.getOrderItemsByOid(oid));
@@ -82,28 +83,31 @@ public class OrderController {
 
 		return order;
 	}
-		
+
 	/* mid로 ostatus와 개수 가져오기 */
 	@GetMapping("/orderstate")
 	public List<OrderState> ostatusByMid(String mid) {
 		List<OrderState> orderStatus = new LinkedList<OrderState>();
-		
+
 		orderStatus = (orderService.getOstatusByMid(mid));
 		orderStatus.add(orderService.getTotalOstatusByMid(mid));
-		
+
 		return orderStatus;
 	}
-	
-	/*orderItem Create*/
+
+	/* orderItem Create */
 	@PostMapping("/createorderitem")
 	public int createOrderItem(OrderItem orderItem) {
 		return orderService.createOrderItem(orderItem);
 	}
-	
-	/*orderList Create*/
+
+	/* orderList Create */
 	@PostMapping("/createorderlist")
+	@ResponseBody
 	public OrderList createOrderList(OrderList orderList) {
+		log.info(orderList.toString());
+		log.info(orderList.getOrderItemList());
 		return orderService.createOrderList(orderList);
 	}
-	
+
 }
