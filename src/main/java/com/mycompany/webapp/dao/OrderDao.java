@@ -3,6 +3,7 @@ package com.mycompany.webapp.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.webapp.dto.OrderItem;
 import com.mycompany.webapp.dto.OrderList;
@@ -21,4 +22,5 @@ public interface OrderDao {
 	public int createOrderList(OrderList orderList);
 	public OrderList getCurrentOrderList(String oid);
 	public int getCurrentOid();
+	public List<String> selectOrderListByMidOdate(@Param("mid") String mid, @Param("startdate") String startdate, @Param("enddate") String enddate);
 }

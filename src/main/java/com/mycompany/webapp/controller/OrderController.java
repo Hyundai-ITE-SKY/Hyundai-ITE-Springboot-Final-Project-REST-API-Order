@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -109,5 +108,22 @@ public class OrderController {
 		log.info(orderList.getOrderItemList());
 		return orderService.createOrderList(orderList);
 	}
-
+	
+	/*odate기간 검색했을 때 주문목록 받아오기*/
+	@GetMapping("/search/{startdate}/{enddate}")
+	public List<OrderList> getOrderListByOdate(HttpServletRequest request, @PathVariable String startdate, @PathVariable String enddate) {
+		log.info(startdate+"~"+enddate);
+		
+		String mid = request.getAttribute("mid").toString();
+		List<String> oids  = orderService.getOrderListByMidOdate(mid, startdate, enddate);
+		List<OrderList> orders = new ArrayList<>();
+		
+		for(String oid : oids) {
+			OrderList order = new OrderList();
+			order = orderService.getOrderListByOid(oid);
+			order.setOrderitem(orderService.getOrderItemsByOid(oid));
+			orders.add(order);
+		}
+		return orders;
+	}
 }
